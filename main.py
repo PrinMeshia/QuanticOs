@@ -1,36 +1,37 @@
 from core.interface import Interface
 import sys
 import os
+import os.path
 import time
 import json
-
+from pathlib import Path
 def curtime():
     return time.strftime("%H:%M:%S %Y-%m-%d")
 
-def launch_os():
+def launch_os(data, default = False):
     print(curtime() +' : Start MirrorOs')
-    test = Interface("MirrorOs")
+    test = Interface("QuanticOS",data,default)
     time.sleep(6)
     test.show()
     
-def launch_default():
-    pass
 
 config_file_path = os.path.join(os.getcwd(),"config","config.json")
-config_default_file_path = os.path.join(os.getcwd(),"config","config.json.default")
+config_default_file_path = os.path.join(os.getcwd(),"config","config-default.json")
+
+if os.path.isfile(config_file_path):
+    config_file = config_file_path
+    default_conf = False
+else:
+    config_file = config_default_file_path
+    default_conf = True
+
 try:
-    with open(config_file_path,encoding="UTF-8",mode="r") as json_file:
+    with open(config_file,encoding="UTF-8",mode="r") as json_file:
         data = json.load(json_file)
-        print(data)
+        launch_os(data,default_conf)
         # Do something with the file
 except FileNotFoundError:
-    try:
-        with open(config_default_file_path,encoding="UTF-8",mode="r") as json_file:
-            data = json.load(json_file)
-            print(data)
-            # Do something with the file
-    except FileNotFoundError:
-        print("File not accessible")
+    print("File not accessible")
 
 
 

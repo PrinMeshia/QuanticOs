@@ -1,0 +1,15 @@
+{
+    "global" :{
+        "language" : "fr",
+        "date_format" : "dmy",
+        "time_format" : 24,
+        "unit" : "metric",
+        "fullscreen" : false
+    },
+    "packages" : [
+        {
+            "name" : "clock",
+            "position" : "top_left"
+        }
+    ]
+}

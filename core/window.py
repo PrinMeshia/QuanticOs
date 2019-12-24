@@ -9,7 +9,7 @@ import os.path
 """Generate window for mirrorOs
 """
 class Window(tk.Tk):
-    def __init__(self, name,fullscreen = True):
+    def __init__(self, name,fullscreen = True,default = False):
         self.name = name
         self.fullscreen = fullscreen
         self.default_w = 800
@@ -18,7 +18,7 @@ class Window(tk.Tk):
         self.pos_x = int((self.winfo_screenwidth() / 2) - (self.default_w / 2))  
         self.pos_y = int((self.winfo_screenheight() / 2) - (self.default_h / 2))
         self.withdraw()
-        self.splash = Splash(self)
+        self.splash = Splash(self,default)
         self.geometry("{}x{}+{}+{}".format(self.default_w, self.default_h, self.pos_x, self.pos_y))
         self.attributes("-fullscreen", self.fullscreen)
         self.title(name)
@@ -31,8 +31,8 @@ class Window(tk.Tk):
         self.attributes("-fullscreen", self.fullscreen)
         
     def show(self):
+        self.splash.quit()
         self.deiconify()
-        self.splash.destroy()
         self.mainloop()
     
 if __name__ == "__main__":
