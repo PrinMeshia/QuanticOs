@@ -1,4 +1,4 @@
-from core.interface import Interface
+from core.layout import Layout
 import sys
 import os
 import os.path
@@ -10,7 +10,7 @@ def curtime():
 
 def launch_os(data, default = False):
     print(curtime() +' : Start OS')
-    test = Interface(data,default)
+    test = Layout(data,default)
     test.show()
     
 

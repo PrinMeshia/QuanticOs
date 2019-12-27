@@ -21,7 +21,7 @@ class Window(QtWidgets.QApplication):
     @classmethod
     def createWindow(self):
         self.setOverrideCursor(Qt.BlankCursor)
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QWidget()
         self.window.setWindowTitle(Ressources.applicationName)
         self.window.setAutoFillBackground(True)
         p = self.window.palette()
@@ -32,7 +32,7 @@ class Window(QtWidgets.QApplication):
         if Window.fullscreen == True:
             self.window.showFullScreen()
         QtWidgets.QShortcut(QtGui.QKeySequence.FullScreen,self.window,self.toggleScreen)
-        
+        self.layout = QtWidgets.QHBoxLayout()
         
     @classmethod
     def toggleScreen(self):
@@ -63,8 +63,8 @@ class Window(QtWidgets.QApplication):
         self.progressBar.setValue(0)
         self.progressBar.setStyleSheet(
             "QProgressBar::chunk { background-color: #05B8CC; }"+
-             "QProgressBar { color: #000000; text-align:center;font-weight:bold}" 
-             )
+            "QProgressBar { color: #000000; text-align:center;font-weight:bold}" 
+        )
         self.progressBar.setMaximum(Window.numPackage) 
         self.progressBar.total_bytes = Window.numPackage
         self.progressBar.setGeometry(0, splashPix.height()-50, splashPix.width(),20) 

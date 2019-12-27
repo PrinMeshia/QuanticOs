@@ -10,18 +10,6 @@
         {
             "name" : "clock",
             "position" : "top_left"
-        },
-        {
-            "name" : "clock1",
-            "position" : "top_left"
-        },
-        {
-            "name" : "clock2",
-            "position" : "top_left"
-        },
-        {
-            "name" : "clock3",
-            "position" : "top_left"
         }
     ]
 }
