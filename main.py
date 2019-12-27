@@ -9,9 +9,8 @@ def curtime():
     return time.strftime("%H:%M:%S %Y-%m-%d")
 
 def launch_os(data, default = False):
-    print(curtime() +' : Start MirrorOs')
-    test = Interface("QuanticOS",data,default)
-    time.sleep(6)
+    print(curtime() +' : Start OS')
+    test = Interface(data,default)
     test.show()
     
 

@@ -1,5 +1,5 @@
 import importlib
-def load_module(module_name):
+def loadModule(module_name):
     module = None
     try:
         import sys
@@ -16,9 +16,9 @@ def load_module(module_name):
     return module
 
             
-def get_instance(module_name, tk,root, config):
+def getInstance(module_name, tk,root, config):
     
-    module = load_module(module_name)
+    module = loadModule(module_name)
     instance = eval("module." + module_name.capitalize() + "(tk,root,config)")
     print(instance)
     return instance
