@@ -11,7 +11,7 @@ class Window(QtWidgets.QApplication):
     fullscreen = False
     numPackage = 1
     def __init__(self, fullscreen,default,numPackage):
-        # QtWidgets.QApplication.__init__(self)
+        # QtWidgets.QApplication.__init__(cls)
         super().__init__([])
         Window.fullscreen = fullscreen
         Window.numPackage = numPackage
@@ -19,64 +19,64 @@ class Window(QtWidgets.QApplication):
         self.createWindow()
         
     @classmethod
-    def createWindow(self):
-        self.setOverrideCursor(Qt.BlankCursor)
-        self.window = QtWidgets.QWidget()
-        self.window.setWindowTitle(Ressources.applicationName)
-        self.window.setAutoFillBackground(True)
-        p = self.window.palette()
-        p.setColor(self.window.backgroundRole(),Ressources.backgroundColor)
-        self.window.setPalette(p)
-        self.window.setWindowIcon(QtGui.QIcon(Ressources.getImage("icon")))
-        self.window.resize(800,600)
+    def createWindow(cls):
+        cls.setOverrideCursor(Qt.BlankCursor)
+        cls.window = QtWidgets.QWidget()
+        cls.window.setWindowTitle(Ressources.applicationName)
+        cls.window.setAutoFillBackground(True)
+        p = cls.window.palette()
+        p.setColor(cls.window.backgroundRole(),Ressources.backgroundColor)
+        cls.window.setPalette(p)
+        cls.window.setWindowIcon(QtGui.QIcon(Ressources.getImage("icon")))
+        cls.window.resize(800,600)
         if Window.fullscreen == True:
-            self.window.showFullScreen()
-        QtWidgets.QShortcut(QtGui.QKeySequence.FullScreen,self.window,self.toggleScreen)
-        self.layout = QtWidgets.QHBoxLayout()
+            cls.window.showFullScreen()
+        QtWidgets.QShortcut(QtGui.QKeySequence.FullScreen,cls.window,cls.toggleScreen)
+        cls.layout = QtWidgets.QHBoxLayout()
         
     @classmethod
-    def toggleScreen(self):
+    def toggleScreen(cls):
         Window.fullscreen = not Window.fullscreen
         if Window.fullscreen == True : 
-            self.window.showFullScreen()
+            cls.window.showFullScreen()
         else :
-            self.window.showNormal()
+            cls.window.showNormal()
 
     @classmethod
-    def splashScreen(self,default):
+    def splashScreen(cls,default):
         splashPix = QtGui.QPixmap(Ressources.getImage("logo"))
-        self.splash = QtWidgets.QSplashScreen(splashPix, Qt.WindowStaysOnTopHint)
+        cls.splash = QtWidgets.QSplashScreen(splashPix, Qt.WindowStaysOnTopHint)
       
-        self.splash.setAutoFillBackground(True)
-        p = self.splash.palette()
-        p.setColor(self.splash.backgroundRole(),Ressources.backgroundColor)
-        self.splash.setPalette(p)            
-        self.splash.setEnabled ( False ) 
-        self.setProgressBar(splashPix)
+        cls.splash.setAutoFillBackground(True)
+        p = cls.splash.palette()
+        p.setColor(cls.splash.backgroundRole(),Ressources.backgroundColor)
+        cls.splash.setPalette(p)            
+        cls.splash.setEnabled ( False ) 
+        cls.setProgressBar(splashPix)
         if default == True:
-            self.splash.showMessage("Default configuration", Ressources.getAlignment("bottom"), Ressources.fontColor)
-        self.splash.show()
+            cls.splash.showMessage("Default configuration", Ressources.getAlignment("bottom"), Ressources.fontColor)
+        cls.splash.show()
         
     @classmethod    
-    def setProgressBar(self,splashPix):
-        self.progressBar = QtWidgets.QProgressBar(self.splash) 
-        self.progressBar.setValue(0)
-        self.progressBar.setStyleSheet(
+    def setProgressBar(cls,splashPix):
+        cls.progressBar = QtWidgets.QProgressBar(cls.splash) 
+        cls.progressBar.setValue(0)
+        cls.progressBar.setStyleSheet(
             "QProgressBar::chunk { background-color: #05B8CC; }"+
             "QProgressBar { color: #000000; text-align:center;font-weight:bold}" 
         )
-        self.progressBar.setMaximum(Window.numPackage) 
-        self.progressBar.total_bytes = Window.numPackage
-        self.progressBar.setGeometry(0, splashPix.height()-50, splashPix.width(),20) 
+        cls.progressBar.setMaximum(Window.numPackage) 
+        cls.progressBar.total_bytes = Window.numPackage
+        cls.progressBar.setGeometry(0, splashPix.height()-50, splashPix.width(),20) 
          
     @classmethod
-    def show(self):
-        self.splash.finish(self.window)
-        self.window.show()
-        self.exec_()
+    def show(cls):
+        cls.splash.finish(cls.window)
+        cls.window.show()
+        cls.exec_()
 
 if __name__ == "__main__":
-    window = Window(True,True,1) 
+    window = Window(False,True,1) 
     time.sleep(6)
     window.show()
     
