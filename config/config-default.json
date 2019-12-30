@@ -9,7 +9,8 @@
     "packages" : [
         {
             "name" : "clock",
-            "position" : "top_left"
+            "position" : "top_left",
+            "locale" : "fr_FR"
         }
     ]
 }

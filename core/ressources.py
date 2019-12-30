@@ -10,6 +10,7 @@ class Ressources:
     applicationName = "QuanticOS"
     assetsPath = os.path.join(os.getcwd(),"assets")
     imagesPath = "images"
+    iconsPath = "icons"
     backgroundColor = Qt.black
     fontColor = Qt.white
     positions = {
@@ -25,7 +26,23 @@ class Ressources:
     }
     images = {
         "logo" : "logo.png",
-        "icon" : "favicon.png"
+        "icon" : "favicon.png",
+        "loader" : "loader.gif"
+    }
+    icon_lookup = {
+        'clear-day': "Sun.png",  # clear sky day
+        'wind': "Wind.png",   #wind
+        'cloudy': "Cloud.png",  # cloudy day
+        'partly-day': "assets/PartlySunny.png",  # partly cloudy day
+        'rain': "Rain.png",  # rain day
+        'snow': "Snow.png",  # snow day
+        'snow-thin': "Snow.png",  # sleet day
+        'fog': "Haze.png",  # fog day
+        'clear-night': "Moon.png",  # clear sky night
+        'partly-cloudy-night': "PartlyMoon.png",  # scattered clouds night
+        'thunderstorm': "Storm.png",  # thunderstorm
+        'tornado': "Tornado.png",    # tornado
+        'hail': "Hail.png"  # hail
     }
     
     @classmethod
@@ -34,8 +51,16 @@ class Ressources:
     
     @classmethod
     def getAlignment(self,position):
-        return int(self.positions[position])
+        return self.positions[position]
     
     @classmethod
     def getImage(self,image):
         return self.getImagePath(self.images[image])
+    
+    @classmethod
+    def getIconPath(self,folder,image):
+        return os.path.join(self.assetsPath,folder,self.iconsPath,image)
+    
+    @classmethod
+    def getIcons(self,folder,image):
+        return self.getIconPath(folder,self.images[image])

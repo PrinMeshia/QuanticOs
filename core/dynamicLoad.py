@@ -15,8 +15,8 @@ def loadModule(module_name):
         print("Error to load the module '" + module_name + "': " + serr)
     return module
       
-def getInstance(module_name, config):
+def getInstance(module_name,parent, config):
     module = loadModule(module_name)
-    instance = eval("module." + module_name.capitalize() + "(config)")
+    instance = eval("module." + module_name.capitalize() + "(parent,config)")
     print(instance)
     return instance
