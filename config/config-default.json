@@ -1,6 +1,6 @@
 {
     "global" :{
-        "language" : "fr",
+        "locale" : "fr_FR",
         "date_format" : "dmy",
         "time_format" : 24,
         "unit" : "metric",
@@ -9,8 +9,14 @@
     "packages" : [
         {
             "name" : "clock",
-            "position" : "top_left",
-            "locale" : "fr_FR"
+            "position" : "top_left"
+        },
+        {
+            "name" : "weather",
+            "position" : "top_right",
+            "api_key" : "",
+            "city_name" : "Bordeaux,FR",
+            "city_code" : "6455058"
         }
     ]
 }

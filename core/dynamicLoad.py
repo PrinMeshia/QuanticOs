@@ -8,7 +8,7 @@ def loadModule(module_name):
         pass
     try:
         import importlib
-        module = importlib.import_module("packages."+module_name+"."+module_name)
+        module = importlib.import_module("modules."+module_name+".module")
         dir(module)
     except BaseException as err:
         serr = str(err)
@@ -17,6 +17,7 @@ def loadModule(module_name):
       
 def getInstance(module_name,parent, config):
     module = loadModule(module_name)
+    print(module)
     instance = eval("module." + module_name.capitalize() + "(parent,config)")
-    print(instance)
+    
     return instance
