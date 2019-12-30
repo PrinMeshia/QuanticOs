@@ -14,7 +14,7 @@
         {
             "name" : "weather",
             "position" : "top_right",
-            "api_key" : "",
+            "api_key" : "36d26dba5d5b6bc5e6bb9ea52074ba2b",
             "city_name" : "Bordeaux,FR",
             "city_code" : "6455058"
         }
