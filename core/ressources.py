@@ -13,16 +13,27 @@ class Ressources:
     iconsPath = "icons"
     backgroundColor = Qt.black
     fontColor = Qt.white
-    positions = {
-        "top-left": Qt.AlignTop | Qt.AlignLeft,
+    alignments = {
+        "top_left": Qt.AlignTop | Qt.AlignLeft,
         "top" : Qt.AlignTop |  Qt.AlignCenter,
-        "top-right" : Qt.AlignTop | Qt.AlignRight,
+        "top_right" : Qt.AlignTop | Qt.AlignRight,
         "left": Qt.AlignCenter | Qt.AlignLeft,
         "center" : Qt.AlignCenter | Qt.AlignCenter,
         "right" : Qt.AlignCenter | Qt.AlignRight,
-        "bottom-left": Qt.AlignBottom | Qt.AlignLeft,
+        "bottom_left": Qt.AlignBottom | Qt.AlignLeft,
         "bottom" : Qt.AlignBottom |  Qt.AlignCenter,
-        "bottom-right" : Qt.AlignBottom | Qt.AlignRight
+        "bottom_right" : Qt.AlignBottom | Qt.AlignRight
+    }
+    positions = {
+        "top_left": (0,0),
+        "top" : (0,1),
+        "top-right" : (0,2),
+        "left": (1,0),
+        "center" : (1,1),
+        "right" : (1,2),
+        "bottom-left": (2,0),
+        "bottom" :  (2,1),
+        "bottom-right" : (2,2)
     }
     images = {
         "logo" : "logo.png",
@@ -50,8 +61,12 @@ class Ressources:
         return os.path.join(self.assetsPath,self.imagesPath,image)
     
     @classmethod
-    def getAlignment(self,position):
-        return self.positions[position]
+    def getAlignment(self,alignment):
+        return self.alignments[alignment]
+    
+    @classmethod
+    def getPosition(self,alignment):
+        return self.positions[alignment]
     
     @classmethod
     def getImage(self,image):

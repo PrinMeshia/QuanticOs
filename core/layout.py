@@ -1,5 +1,5 @@
 import time
-
+from PySide2 import QtWidgets
 from .window import Window
 from .ressources import Ressources
 from .dynamicLoad import getInstance
@@ -10,23 +10,38 @@ class Layout(Window):
         super().__init__(data["global"]["fullscreen"],
                          default, len(data["packages"]))
         self.data = data
+        w, h= 3,3
+        self.matrix = [[0 for x in range(w)] for y in range(h)] 
         self.createWidget(data["packages"])
+        self.createEmptySlot()        
 
     def createWidget(self, packages=[]):
-        package_list = {}
-        i = 1
         for package in packages:
             config = {**self.data["global"], **package}
-            package_list[package["name"]] = getInstance(
-                package["name"], self.window, config)
-            self.layout.addWidget(package_list[package["name"]])
-            self.progressBar.setValue(i)
-            self.processEvents()
-            time.sleep(1)
-            i += 1
-        self.window.setLayout(self.layout)
-
-
+            pos = package["position"]
+            self.matrix[pos[0]][pos[1]] = getInstance(package["name"], self.window, config)
+            if "colspan" in package:
+                for index in range(package["colspan"]):
+                    self.matrix[pos[0]][pos[1]+index] = "span"
+        self.layout.update()
+    
+    def createEmptySlot(self):
+        i=1
+        for row,line in enumerate(self.matrix):
+            self.layout.setRowStretch(row,1)
+            for col, instance in enumerate(line):
+                if row == 0:
+                    self.layout.setColumnStretch(col,1)
+                if instance == 0:
+                    widget = QtWidgets.QWidget(self.window)
+                    self.layout.addWidget(widget,row,col) 
+                else:
+                    self.layout.addWidget(instance,row,col)
+                    self.progressBar.setValue(i) 
+                    self.processEvents()
+                    i += 1
+                    time.sleep(1)   
+        time.sleep(1)            
 if __name__ == "__main__":
     window = Layout(False, True)
     time.sleep(6)

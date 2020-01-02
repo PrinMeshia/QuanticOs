@@ -1,11 +1,12 @@
 from PySide2 import QtWidgets,QtCore
 from PySide2.QtCore import QLocale
 from core.ressources import Ressources
+import feedparser
+
 class Clock(QtWidgets.QWidget):  
     def __init__(self,parent,config):
         super(Clock,self).__init__(parent)
         self.locale = config["locale"]
-        
         QLocale.setDefault(self.locale)
         self.curTime = QtWidgets.QLabel()
         self.curTime.setObjectName("curTime")

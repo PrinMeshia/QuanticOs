@@ -21,7 +21,7 @@ class Window(QtWidgets.QApplication):
     @classmethod
     def createWindow(self):
         self.setOverrideCursor(Qt.BlankCursor)
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QWidget()
         self.window.setWindowTitle(Ressources.applicationName)
         self.window.setAutoFillBackground(True)
         p = self.window.palette()
@@ -33,9 +33,10 @@ class Window(QtWidgets.QApplication):
             self.window.showFullScreen()
         QtWidgets.QShortcut(QtGui.QKeySequence.FullScreen,self.window,self.toggleScreen)
         QtWidgets.QShortcut(QtGui.QKeySequence.Cancel,self.window,self.closeAllWindows)
-        self.mainWidget()
+        # self.mainWidget()
         self.layout = QtWidgets.QGridLayout()
-       
+        self.window.setLayout(self.layout)
+                
     @classmethod
     def mainWidget(self):
         rect = self.window.geometry()
