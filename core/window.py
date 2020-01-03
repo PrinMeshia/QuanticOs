@@ -75,10 +75,10 @@ class Window(QtWidgets.QApplication):
         self.progressBar = QtWidgets.QProgressBar(self.splash) 
         self.progressBar.setObjectName("splashLoader")
         self.progressBar.setValue(0)
-        self.progressBar.setStyleSheet(
-            "#splashLoader::chunk { background-color: #05B8CC; }"+
-            "#splashLoader { color: #000000; text-align:center;font-weight:bold}" 
-        )
+        self.progressBar.setStyleSheet("""
+            #splashLoader::chunk { background-color: #05B8CC; }
+            #splashLoader { color: #000000; text-align:center;font-weight:bold}
+        """)
         self.progressBar.setMaximum(Window.numPackage) 
         self.progressBar.total_bytes = Window.numPackage
         self.progressBar.setGeometry(0, splashPix.height()-50, splashPix.width(),20) 

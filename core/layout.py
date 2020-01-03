@@ -19,14 +19,17 @@ class Layout(Window):
         for package in packages:
             config = {**self.data["global"], **package}
             pos = package["position"]
-            self.matrix[pos[0]][pos[1]] = getInstance(package["name"], self.window, config)
+            span = 1
             if "colspan" in package:
+                span = package["colspan"]
                 for index in range(package["colspan"]):
                     self.matrix[pos[0]][pos[1]+index] = "span"
+            self.matrix[pos[0]][pos[1]] = [getInstance(package["name"], self.window, config),span]
         self.layout.update()
     
     def createEmptySlot(self):
         i=1
+        print(self.matrix)
         for row,line in enumerate(self.matrix):
             self.layout.setRowStretch(row,1)
             for col, instance in enumerate(line):
@@ -35,8 +38,9 @@ class Layout(Window):
                 if instance == 0:
                     widget = QtWidgets.QWidget(self.window)
                     self.layout.addWidget(widget,row,col) 
-                else:
-                    self.layout.addWidget(instance,row,col)
+                elif instance != "span":
+                    print(instance)
+                    self.layout.addWidget(instance[0],row,col,1,int(instance[1]))
                     self.progressBar.setValue(i) 
                     self.processEvents()
                     i += 1

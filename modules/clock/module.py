@@ -15,19 +15,18 @@ class Clock(QtWidgets.QWidget):
         self.layout.addWidget(curDate)
         self.layout.addWidget(self.curTime)
         self.layout.setAlignment(Ressources.getAlignment(config["alignment"]))
-        self.setStyleSheet("#curdate,#curTime {color: #ffffff; font-size:35px;text-align:center;width:100%} ")
-        self.setFixedSize(self.layout.sizeHint())
+        self.setStyleSheet("""
+                           #curdate,#curTime {
+                               color:white; 
+                               font: bold 35px;
+                               padding: 6px;
+                            } 
+                            """)
         self.curTime.setAlignment(Ressources.getAlignment("center"))
         timer = QtCore.QTimer(self)
         self.connect(timer,QtCore.SIGNAL('timeout()'),self.showTime)
         timer.start(1000)
-        self.showTime()
-        # style_str = "QWidget {font-size: 20px}"
-        # self.setStyleSheet(style_str)
-        # self.Add
-        
- 
-       
+        self.showTime()      
         
     def showTime(self):
         time = QtCore.QTime.currentTime()

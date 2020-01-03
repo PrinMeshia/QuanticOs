@@ -16,6 +16,17 @@
             "name" : "speech",
             "alignment" : "center",
             "position" : [1,1]
+        },
+        {
+            "name" : "newsfeed",
+            "alignment" : "center",
+            "position" : [2,0],
+            "colspan" : 3,
+            "rssUrl" : [
+                "https://news.google.com/rss?hl=fr&amp;ned=us&amp;gl=FR&gl=FR&ceid=FR:fr"
+            ]
+                
+            
         }
     ]
 }
