@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets,QtGui
 from PySide2.QtCore import Qt, QSize
-from core.ressources import Ressources
+import core.ressources as Ressources
 
 class Speech(QtWidgets.QWidget):  
     def __init__(self,parent,config):

@@ -1,7 +1,6 @@
 import time
 from PySide2 import QtWidgets
 from .window import Window
-from .ressources import Ressources
 from .dynamicLoad import getInstance
 
 

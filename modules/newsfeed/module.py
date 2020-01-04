@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets,QtCore
 from PySide2.QtCore import QLocale
-from core.ressources import Ressources
+import core.ressources as Ressources
 from datetime import datetime
 from dateutil import parser
 import random
@@ -36,7 +36,7 @@ class Newsfeed(QtWidgets.QWidget):
                                font: 25px;
                             } 
                             """)
-        
+
 
 
         self.connect(self.timerFeed,QtCore.SIGNAL('timeout()'),self.getNewsFedd)

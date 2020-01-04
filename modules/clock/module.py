@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets,QtCore
 from PySide2.QtCore import QLocale
-from core.ressources import Ressources
+import core.ressources as Ressources
 class Clock(QtWidgets.QWidget):  
     def __init__(self,parent,config):
         super(Clock,self).__init__(parent)
