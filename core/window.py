@@ -6,13 +6,13 @@ import core.ressources as rs
 class Window(QtWidgets.QApplication):
     fullscreen = False
     numPackage = 1
-    def __init__(cls, fullscreen,default,numPackage):
+    def __init__(self, fullscreen,default,numPackage):
         # QtWidgets.QApplication.__init__(cls)
         super().__init__([])
         Window.fullscreen = fullscreen
         Window.numPackage = numPackage
-        cls.splashScreen(default)
-        cls.createWindow()
+        self.splashScreen(default)
+        self.createWindow()
         
     @classmethod
     def createWindow(cls):
