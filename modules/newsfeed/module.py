@@ -23,7 +23,7 @@ class Newsfeed(QtWidgets.QWidget):
         self.layout = QtWidgets.QGridLayout(self)
         self.layout.addWidget(self.date_pub)
         self.layout.addWidget(self.title_pub)
-        self.layout.setAlignment(Ressources.getAlignment("left"))
+        self.layout.setAlignment(Ressources.getAlignment("bottom_left"))
         self.setStyleSheet("""
                            #datePub,#titlePub {
                                color:white; 
@@ -58,7 +58,7 @@ class Newsfeed(QtWidgets.QWidget):
         random_items = random.choices(population=self.all_head_lines, k=1)[0]
         date = parser.parse(random_items["date"])
         str_date = QLocale().toString(date) 
-        self.date_pub.setText(str_date)
+        self.date_pub.setText(str_date.capitalize())
         self.title_pub.setText(random_items["title"])
         print(random_items)
 
